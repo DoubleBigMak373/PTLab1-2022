@@ -2,7 +2,7 @@
 import argparse
 import sys
 from CalcRating import CalcRating
-from TextDataReader import TextDataReader
+from CalcQuartile import RatingCalculate
 from YamlDataReader import YamlDataReader
 
 
@@ -19,6 +19,11 @@ def main():
     reader = YamlDataReader()
     students = reader.read(path)
     print("Students: ", students)
+
+    averagePoints = CalcRating(students).calc()
+    print("Средний балл:", averagePoints)
+    studentsInSecondQuartile = RatingCalculate(averagePoints).getRatingSecondQuartile()
+    print("Студенты во второй квартили распределения по рейтингам:",studentsInSecondQuartile)
 
 
 if __name__ == "__main__":
