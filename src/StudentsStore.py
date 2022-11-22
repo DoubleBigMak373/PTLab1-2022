@@ -2,7 +2,7 @@
 from CalcRating import RatingType
 import numpy as np
 
-QuartileType = []
+QuartileType = {}
 
 class StudentsStore:
 
@@ -12,15 +12,16 @@ class StudentsStore:
 
     def getSecondQuartileStudents(self) -> QuartileType:
         self.result = self.rating.copy()
+        if self.result == {}:
+            return self.result
         sorted_data = sorted(self.result.values())
         q1 = np.quantile(sorted_data, .25)
         q2 = np.quantile(sorted_data, .50)
-        lis = []
+        dictionary = {}
         for student in self.result.items():
-            if q1 <= student[1] <= q2:
-               lis.append(student[0])
-        return lis
-
+            if q1 < student[1] <= q2:
+                dictionary[student[0]] = student[1]
+        return dictionary
 
 
 

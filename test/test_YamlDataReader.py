@@ -35,9 +35,3 @@ class TestYamlDataReader:
     def test_read(self, filepath_and_data: tuple[str,DataType]) -> None:
         file_content = YamlDataReader().read(filepath_and_data[0])
         assert file_content == filepath_and_data[1]
-
-    def test_read_emptyPath(self) -> None:
-        with pytest.raises(FileNotFoundError):
-            str = ""
-            expected_result = DataType()
-            file_content = YamlDataReader().read(str)
